@@ -10,7 +10,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const page = () => {
+const AddItem = () => {
  const [title, setTitle] = useState("");
  const [description, setDescription] = useState("");
  
@@ -77,4 +77,4 @@ const page = () => {
   )
 }
 
-export default page
+export default AddItem
