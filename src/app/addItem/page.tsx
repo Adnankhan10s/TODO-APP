@@ -46,7 +46,7 @@ const page = () => {
             </Link>
         </div>
     </div>
-       <div className='container w-[370px] md:w-full mx-auto'>
+       <div className='container w-[350px] md:w-full mx-auto px-5 md:px-0'>
                 <form onSubmit={handleSubmit} className="  grid grid-cols-1 gap-4 pt-10" >
                 <ToastContainer />
                 <div>
