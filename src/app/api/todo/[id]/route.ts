@@ -19,7 +19,7 @@ export async function PUT(req:NextRequest,{params}:{params:{id:string}}) {
   }
   
 }
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }:any) {
   try {
     const id = await params.id;
     await DbConnect();
@@ -33,7 +33,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: "Error fetching todo" }, { status: 500 });
   }
 }
-export async function DELETE(req:NextRequest,{params}:{params:{id:string}}) {
+export async function DELETE(req:NextRequest,{params}:any) {
   await DbConnect();
   
   try {
