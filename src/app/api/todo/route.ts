@@ -1,18 +1,17 @@
 import { DbConnect } from "@/libs/dbConfig";
 import { Todo } from "@/models/Todo";
-import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 
 
 export async function POST(req:NextRequest) {
       try {
-        const body = await req.json();
+        const {title , description} = await req.json();
         await DbConnect();
-        const todo =  new Todo(body);
-        await todo.save();
+        const todo = await Todo.create({title,description});
+        
         console.log(todo);
-        return NextResponse.json({message:"Todo Created"},{status:201})
+        return NextResponse.json(todo,{status:201})
 
       } catch (error) {
         console.log(error);

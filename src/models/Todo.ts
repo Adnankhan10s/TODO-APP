@@ -9,6 +9,5 @@ interface Todo extends Document{
 const todoSchema = new mongoose.Schema<Todo>({
     title:{type:String , required:true},
     description:{type:String , required:true},
-    createdAt:{type:Date , default:Date.now()},
-})
-export const Todo = mongoose.models.Todo || mongoose.model("Todo",todoSchema);
+},{timestamps:true})
+export const Todo = mongoose.models.Todo || mongoose.model<Todo>("Todo",todoSchema);

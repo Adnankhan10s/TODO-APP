@@ -2,6 +2,7 @@
 import { Todo } from "@/models/Todo"
 import axios from "axios"
 import { FilePenLine, Trash2 } from "lucide-react"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export interface Todo extends Document{
@@ -32,19 +33,21 @@ useEffect(() => {
 
   return (
     <div className="w-full h-full flex justify-center ">
-      <div className="container  px-10  md:w-full ">
+      <div className="container grid grid-cols-1 justify-items-center px-10  md:w-full ">
       <h1 className="text-center md:text-4xl text-2xl font-bold text-white/90">Item List</h1>
 
         {
           todos.map((todo:Todo)=>(
-<div key={todo._id} className="mt-4 flex justify-between items-center p-5 rounded-md bg-white/25 backdrop-blur-md md:w-full w-[350px] mx-auto ">
+<div key={todo._id} className="mt-4 flex justify-between items-center p-5 rounded-md bg-white/30 backdrop-blur-md md:w-full w-[350px]  ">
               <div>
                 <h1 className="md:text-4xl text-xl font-bold text-[#1c1c1c]">{todo.title}</h1>
                 <p className="mt-2 md:text-xl text-sm font-bold text-blue-950">{todo.description}</p>
                 <p className="text-gray-500">{new Date(todo.createdAt).toLocaleDateString()}</p>
                 </div>
                 <div className="flex  items-center gap-4 ">
+                  <Link href={`/editTodo/${todo._id}`}>
                   <FilePenLine className="text-black hover:text-gray-600 cursor-pointer md:size-10" />
+                  </Link>
                   <Trash2 className="text-red-600 hover:text-red-400 cursor-pointer md:size-10" />
                   
                 </div>
