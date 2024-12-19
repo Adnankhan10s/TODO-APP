@@ -3,6 +3,8 @@ import { Todo } from "@/models/Todo"
 import axios from "axios"
 import { FilePenLine, Trash2 } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { todo } from "node:test"
 import { useEffect, useState } from "react"
 
 export interface Todo extends Document{
@@ -16,6 +18,9 @@ const TopicList = () => {
 
   const [todos, setTodos] = useState<Todo[]>([]);
   const [loading, setloading] = useState(true);
+
+
+
   async function fetchTodo (){
 try {
       const todos = await axios.get('/api/todo');
@@ -26,7 +31,20 @@ try {
     console.log("Error fetching todos",error)
 }    
 }
-
+const handleClick = async(id:string)=>{
+  const confirmDelete = confirm("Are You Sure You Want to Delete Item");
+  if (!confirmDelete) {
+    return;
+  }
+  try {
+    await axios.delete(`/api/todo/${id}`);
+    setTodos((prevTodos)=>prevTodos.filter((todo)=>todo._id !==id));
+    
+    
+  } catch (error) {
+    console.log("Error While Deleting", error)
+  }
+}
 useEffect(() => {
  fetchTodo();
 }, [])
@@ -36,7 +54,9 @@ useEffect(() => {
       <div className="container grid grid-cols-1 justify-items-center px-10  md:w-full ">
       <h1 className="text-center md:text-4xl text-2xl font-bold text-white/90">Item List</h1>
 
-        {
+        {loading ? (<h1 className="font-bold text-2xl pt-5 text-white/80">Loading....</h1>)
+        
+        :todos.length> 0 ?(
           todos.map((todo:Todo)=>(
 <div key={todo._id} className="mt-4 flex justify-between items-center p-5 rounded-md bg-white/30 backdrop-blur-md md:w-full w-[350px]  ">
               <div>
@@ -48,12 +68,16 @@ useEffect(() => {
                   <Link href={`/editTodo/${todo._id}`}>
                   <FilePenLine className="text-black hover:text-gray-600 cursor-pointer md:size-10" />
                   </Link>
-                  <Trash2 className="text-red-600 hover:text-red-400 cursor-pointer md:size-10" />
+                  <Trash2 onClick={() => handleClick(todo._id)} className="text-red-600 hover:text-red-400 cursor-pointer md:size-10" />
                   
                 </div>
                 
             </div>
-          ))
+          ))):(
+            <h1 className="font-bold text-xl pt-5 text-white/80">
+            No todos found.
+          </h1>
+          )
         }
             
            
