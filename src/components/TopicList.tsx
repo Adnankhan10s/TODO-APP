@@ -3,8 +3,6 @@ import { Todo } from "@/models/Todo"
 import axios from "axios"
 import { FilePenLine, Trash2 } from "lucide-react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { todo } from "node:test"
 import { useEffect, useState } from "react"
 
 export interface Todo extends Document{

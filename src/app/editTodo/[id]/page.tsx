@@ -1,7 +1,7 @@
 import EditTodoPage from "@/components/EditTodo"
 
-
-const page = async ({ params }: { params: { id: string } }) => {
+type Params = Promise<{ id: string }>
+const page = async ({ params } : { params: Params }) => {
   const {id} = await params;
   return (
     <>
