@@ -7,7 +7,7 @@ import {  NextResponse } from "next/server";
 
 export async function PUT (req:Request,{params}:{params:{id:string}}) {
   await DbConnect();
-  const {id} = await params
+  const {id} =  params
   const {title , description} = await req.json();
   try {
     const updatedTodo = await Todo.findByIdAndUpdate(id,
@@ -19,9 +19,9 @@ export async function PUT (req:Request,{params}:{params:{id:string}}) {
   }
   
 }
-export async function GET(request: Request, { params }:{params:{id:string}}) {
+export async function GET(request: Request , { params }:{params:{id:string}}) {
   try {
-    const {id} = await params;
+    const {id} =  params;
     await DbConnect();
     const todo = await Todo.findById(id);
     
@@ -35,7 +35,7 @@ export async function GET(request: Request, { params }:{params:{id:string}}) {
 }
 export async function DELETE(req:Request,{params}:{params:{id:string}}) {
   await DbConnect();
-  const {id} = await params
+  const {id} =  params
   try {
     await Todo.findByIdAndDelete(id)
     return NextResponse.json({message:"Deleted successfully"},{status:201})
