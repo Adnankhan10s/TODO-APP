@@ -37,7 +37,7 @@ const AddItem = () => {
 
  }
   return (
-    <div className='w-full h-full'>
+    <div className='w-full bg-gradient-to-tl bg-orange-400 via-orange-300 from-orange-200 min-h-full '>
      
           <div className='w-full h-[100px] flex items-center '>
         <div className='container  w-[370px] md:w-full mx-auto px-5 rounded bg-gradient-to-l bg-orange-400 via-orange-300 from-orange-200  flex justify-center items-center space-x-5 '>
