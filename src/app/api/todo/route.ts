@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function POST(req:NextRequest) {
+export async function POST(req:Request) {
       try {
         const {title , description} = await req.json();
         await DbConnect();
@@ -19,7 +19,7 @@ export async function POST(req:NextRequest) {
       }
 }
 
-export async function GET(req:NextRequest) {
+export async function GET(req:Request) {
     try {
         await DbConnect();
         const todos= await Todo.find({});
